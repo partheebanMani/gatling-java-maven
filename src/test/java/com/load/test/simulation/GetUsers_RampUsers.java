@@ -12,7 +12,7 @@ public class GetUsers_RampUsers extends SimulationHooks {
                                 .during(PROPERTIES.duration()))
                         .protocols(getUserHttpProtocol)
         ).assertions(
-                global().responseTime().max().gte(PROPERTIES.maxResponseTime()),
+                global().responseTime().max().lte(PROPERTIES.maxResponseTime()),
                 global().successfulRequests().percent().gte(PROPERTIES.successResponsePercent())
         );
     }

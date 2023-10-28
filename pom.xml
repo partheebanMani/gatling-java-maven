@@ -57,11 +57,24 @@
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>${gatling.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
                 <configuration>
-                    <profile>${test.env}</profile>
+                    <simulationsFolder>src/test/java</simulationsFolder>
                     <runMultipleSimulations>true</runMultipleSimulations>
-                    <simulationClass>src/test/java/com/load/test/simulation/CreateUsers_RampUsers.java</simulationClass>
+                    <simulationClass>com.load.test.simulation.${simulationClassName}</simulationClass>
+                    <jvmArgs>
+                        <jvmArg>-Dtest.env=${test.env}</jvmArg>
+                    </jvmArgs>
                 </configuration>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

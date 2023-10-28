@@ -12,7 +12,7 @@ public class GetUsers_AtOnceUsers extends SimulationHooks {
                 getUserScenario.injectOpen(OpenInjectionStep.atOnceUsers(PROPERTIES.maxUsers()))
                         .protocols(getUserHttpProtocol)
         ).assertions(
-                global().responseTime().max().gte(PROPERTIES.maxResponseTime()),
+                global().responseTime().max().lte(PROPERTIES.maxResponseTime()),
                 global().successfulRequests().percent().gte(PROPERTIES.successResponsePercent())
         );
 
